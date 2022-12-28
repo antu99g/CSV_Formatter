@@ -31,4 +31,4 @@ To run this project, run the following command
 Documentation: [README.md](https://github.com/Keyang/node-csvtojson)
 ## Screenshots
 
-<img src="https://user-images.githubusercontent.com/114740896/209811759-ee9f1d82-95da-4fa3-9ba2-119453fa0d36.png" alt="screenshot" height="200" width="300">&ensp;<img src="https://user-images.githubusercontent.com/114740896/209811762-629f0429-c00f-4de6-8b49-9389aff9237b.png" alt="screenshot" height="200" width="300">
+<img src="https://user-images.githubusercontent.com/114740896/209811759-ee9f1d82-95da-4fa3-9ba2-119453fa0d36.png" alt="screenshot" height="250" width="300">&ensp;<img src="https://user-images.githubusercontent.com/114740896/209811762-629f0429-c00f-4de6-8b49-9389aff9237b.png" alt="screenshot" height="250" width="300">
