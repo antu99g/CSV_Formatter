@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   <title>Home</title>
+
+   <style>
+      @import url('https://fonts.googleapis.com/css2?family=Lato&family=Varela+Round&display=swap');
+   </style>
+   
+   <link rel="stylesheet" href="/css/home.css">
+   
+   <script src="https://kit.fontawesome.com/51eec70f98.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+   <nav><h1>CSV_Formatter</h1></nav>
+
+   <div class="table-container">
+      <div> <!-- need this container to match width of searchbar with table -->
+         <% if (json.length > 0){ %>
+            <!-- Search-bar in table -->
+            <div class="searchContainer"><span class="searchBar"><input type="text" placeholder="Search"><i class="fa-solid fa-magnifying-glass"></i></span></div>
+
+            <!-- Table -->
+            <table>
+               <thead>
+                  <tr>
+                     <% for (let header in json[0]){ %>
+                        <th><%= header %></th> 
+                     <% } %>
+                  </tr>
+               </thead>
+            
+               <tbody>
+                  <% for (let object of json){ %>
+                     <tr>
+                        <% for (let value of Object.values(object)){ %>
+                           <td><%= value %></td>
+                        <% } %>
+                     </tr>
+                  <% } %>
+               </tbody>   
+            </table>
+         <% } else { %>
+            <h1>Choose a file...</h1>
+         <% } %>
+      </div>
+   </div>
+
+   <span class="upload">
+      <h4>Upload a csv file</h4>
+      <!-- Form to upload a csv file -->
+      <form action="/upload" method="post" enctype="multipart/form-data">
+         <input type="file" name="file">
+         <button type="submit">Upload</button>
+      </form>
+
+      <!-- List of all saved csv files -->
+      <ul>
+         <% for (let fileName of files){ %>
+            <li><a href="/data/<%= fileName %>"><%= fileName %></a></li>
+         <% } %>
+      </ul>
+   </span>
+   
+
+   <script src="/js/home.js"></script>
+</body>
+</html>
