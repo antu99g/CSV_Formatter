@@ -12,21 +12,26 @@ module.exports.home = function (req, res) {
 
 // Uploading a file
 module.exports.uploadFile = async function (req, res) {
-   // checking for csv filetype
-   if (req.files && req.files.file.mimetype == "text/csv") {
-      // Storing new csv file to uploads folder
-      let file = req.files.file;
-      let filePath = path.join(__dirname, "..", "uploads", file.name);
-
-      await file.mv(filePath, function (err) {
-         if (err) {
-            console.log("Error: ", err);
-         } else {
-            console.log("File uploaded");
-         }
-      });
+   try{
+      // checking for csv filetype
+      if (req.files && req.files.file.mimetype == "text/csv") {
+         // Storing new csv file to uploads folder
+         let file = req.files.file;
+         let filePath = path.join(__dirname, "..", "uploads", file.name);
+   
+         await file.mv(filePath, function (err) {
+            if (err) {
+               console.log("Error: ", err);
+            } else {
+               console.log("File uploaded");
+            }
+         });
+      }
+      return res.redirect("/");
+   }catch(err){
+      console.log(err);
+      return res.redirect("/");
    }
-   return res.redirect("/");
 };
 
 
