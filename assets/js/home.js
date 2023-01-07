@@ -30,9 +30,9 @@ function searchResult(){
 
    // Matching given input with all headers in table
    header.forEach((colHead, colHeadIndex) => {
-      if (input.toLowerCase() == colHead.innerText.toLowerCase()) {
+      if (compareSearchHeader(input, colHead.innerText)){
          index = colHeadIndex;
-      }
+      } 
    });
 
    // Creating new table-row
@@ -45,14 +45,35 @@ function searchResult(){
 
    // Adding all data of matched column to the created row
    rowsList.forEach((row) => {
-      let td = row.children[index].cloneNode(true);
-      tr.appendChild(td);
+      if(row.children[index].innerText != ''){  // if the table cell isn't empty
+         let td = row.children[index].cloneNode(true);
+         tr.appendChild(td);
+      }
    })
    
    // Hiding all table elements and showing the created row
    thead.style.display = 'none';
    tbody.style.display = 'none';
    table.appendChild(tr);
+}
+
+
+// Function for comparing input with all the headers
+function compareSearchHeader (input, header) {
+   let inputArray = input.split(" ");
+   let headerArray = header.split(" ");
+   if(inputArray.length>0){
+      input = inputArray.join("");
+   }
+   if (headerArray.length > 0) {
+      header = headerArray.join("");
+   }
+
+   if (input.toLowerCase() == header.toLowerCase()) {
+      return true;
+   } else {
+      return false;
+   }
 }
 
 
