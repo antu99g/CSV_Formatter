@@ -19,60 +19,85 @@ const inputCol = document.querySelector(".searchBar input");
 
 function searchResult(){
 
+   // if no value is given in input
+   if (inputCol.value == "") {
+      return;
+   }
+
+
+   let input = inputCol.value;
+   let index; // variable holding the index of searched column
+
+
+   // Matching given input with all headers in table
+   for (let i in header) {
+
+      // Compare given input with all the headers
+      if (compareSearchHeader(input, header[i].innerText)) {
+         index = i;  // if header found store index of that column
+         break;
+      }
+
+      // If no header found till last header
+      if (i == header.length - 1) {
+         inputCol.value = "";
+         alert("Data not found. Please give correct value in input.");
+         return;
+      }
+   }
+
+
    // Removing previous search-result from DOM
    let prevSearch = document.getElementById("searchResult");
-   if(prevSearch != null){
+   if (prevSearch != null) {
       prevSearch.remove();
    }
 
-   let input = inputCol.value;
-   let index;  // variable holding the index of searched column
-
-   // Matching given input with all headers in table
-   header.forEach((colHead, colHeadIndex) => {
-      if (compareSearchHeader(input, colHead.innerText)){
-         index = colHeadIndex;
-      } 
-   });
 
    // Creating new table-row
-   let tr = document.createElement('tr');
-   tr.id = 'searchResult';
+   let tr = document.createElement("tr");
+   tr.id = "searchResult";
+
 
    // Adding the matched header to the created row
    let th = header[index].cloneNode(true);
    tr.appendChild(th);
 
+
    // Adding all data of matched column to the created row
    rowsList.forEach((row) => {
-      if(row.children[index].innerText != ''){  // if the table cell isn't empty
+      if (row.children[index].innerText != "") {
+         // if the table cell isn't empty
          let td = row.children[index].cloneNode(true);
          tr.appendChild(td);
       }
-   })
+   });
    
+
    // Hiding all table elements and showing the created row
-   thead.style.display = 'none';
-   tbody.style.display = 'none';
+   thead.style.display = "none";
+   tbody.style.display = "none";
    table.appendChild(tr);
 }
 
 
 // Function for comparing input with all the headers
 function compareSearchHeader (input, header) {
-   let inputArray = input.split(" ");
-   let headerArray = header.split(" ");
-   if(inputArray.length>0){
-      input = inputArray.join("");
-   }
-   if (headerArray.length > 0) {
-      header = headerArray.join("");
-   }
-
-   if (input.toLowerCase() == header.toLowerCase()) {
-      return true;
-   } else {
-      return false;
+   if(input.length <= header.length){
+      let inputArray = input.split(" ");
+      let headerArray = header.split(" ");
+      if(inputArray.length>0){
+         input = inputArray.join("");
+      }
+      if (headerArray.length > 0) {
+         header = headerArray.join("");
+      }
+   
+      if (input.toLowerCase() == header.toLowerCase()) {
+         return true;
+      } else {
+         return false;
+      }
    }
 }
 
@@ -82,7 +107,7 @@ function compareSearchHeader (input, header) {
 fileInput.onchange = function ({target}) {
    var filePath = target.value;
 
-   // Allowing file type
+   // Allowing only csv file type
    var allowedExtensions = /(\.csv)$/i;
 
    if (!allowedExtensions.exec(filePath)) {
