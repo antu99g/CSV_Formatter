@@ -2,6 +2,9 @@ const express = require('express');
 const port = 8000;
 const app = express();
 
+// Configuring environment variables
+require("dotenv").config();
+
 const upload = require('express-fileupload');
 
 
@@ -21,9 +24,9 @@ app.set('views', './views');
 app.use('/', require('./routes/index'));
 
 
-app.listen(port, (err) => {
-   if(err){
+app.listen(process.env.PORT || port, (err) => {
+   if (err) {
       console.log(`Error in running the server: ${err}`);
    }
    console.log(`Server is running on port: ${port}`);
-})
+});
