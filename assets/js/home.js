@@ -83,21 +83,19 @@ function searchResult(){
 
 // Function for comparing input with all the headers
 function compareSearchHeader (input, header) {
-   if(input.length <= header.length){
-      let inputArray = input.split(" ");
-      let headerArray = header.split(" ");
-      if(inputArray.length>0){
-         input = inputArray.join("");
-      }
-      if (headerArray.length > 0) {
-         header = headerArray.join("");
-      }
+   let inputArray = input.split(" ");
+   let headerArray = header.split(" ");
+   if(inputArray.length>0){
+      input = inputArray.join("");
+   }
+   if (headerArray.length > 0) {
+      header = headerArray.join("");
+   }
    
-      if (input.toLowerCase() == header.toLowerCase()) {
-         return true;
-      } else {
-         return false;
-      }
+   if (input.toLowerCase() == header.toLowerCase()) {
+      return true;
+   } else {
+      return false;
    }
 }
 
