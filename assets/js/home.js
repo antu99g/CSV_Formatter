@@ -101,6 +101,18 @@ function compareSearchHeader (input, header) {
 
 
 
+// Function to delete a file
+function confirmDeleteinput (target) {
+   if (target.innerText == 'Cancel') {
+      target.parentNode.classList.add('hidden');
+   } else if (target.innerText == 'Delete') {
+      fetch(`/delete/${target.id}`, {method: 'DELETE'});
+      target.parentElement.parentElement.remove();
+   }
+}
+
+
+
 // Function to allow only csv file to get uploaded
 fileInput.onchange = function ({target}) {
    var filePath = target.value;
@@ -118,7 +130,17 @@ fileInput.onchange = function ({target}) {
 
 // Click event on the search button
 document.onclick = function (e) {
-   if(e.target.classList.contains('fa-magnifying-glass')){
+   const target = e.target;
+   const targetClass = e.target.classList;
+
+   if (targetClass.contains("fa-magnifying-glass")) {
       searchResult();
+   }
+   else if (targetClass.contains("crossImg")) {
+      // showing options to delete/cancel
+      target.parentNode.lastElementChild.classList.remove("hidden");
+   }
+   else if (targetClass.contains("deleteOption")) {
+      confirmDeleteinput(target);
    }
 }

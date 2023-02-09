@@ -135,7 +135,36 @@ th{
    color: darkslategrey;
 }
 .upload ul li{
+   position: relative;
    padding: 7px 0;
    text-align: center;
    border-top: 1px solid lightgrey;
+}
+.crossImg{
+   width: 12px;
+   max-width: 100%;
+   position: absolute;
+   top: 10px;
+   right: 12px;
+}
+.deleteSelect{
+   position: absolute;
+   top: 2px;
+   right: 5px;
+   border: 1px solid grey;
+   color: black;
+   background-color: white;
+   z-index: 1;
+}
+.deleteSelect > *{
+   padding: 3px;
+}
+.deleteSelect div:first-child{
+   border-bottom: 1px solid grey;
+   color: rgb(236, 29, 29);
+}
+   
+
+.hidden{
+   display: none;
 }

@@ -8,6 +8,8 @@ router.get("/", homeController.home);
 
 router.post("/upload", homeController.uploadFile);
 
+router.delete('/delete/:filename', homeController.deleteFile);
+
 router.get("/data/:csv", homeController.getData);
 
 

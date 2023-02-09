@@ -51,3 +51,19 @@ module.exports.getData = function (req, res) {
       return res.redirect('/');
    });
 }
+
+
+module.exports.deleteFile = async function (req, res) {
+   try{
+      console.log('filename', req.params.filename);
+      if(fs.existsSync(path.join(__dirname, "..", 'uploads', req.params.filename))){
+         fs.unlinkSync(path.join(__dirname, "..", 'uploads', req.params.filename));
+         return;
+      } else {
+         throw new Error('File not found');
+      }
+   } catch (err) {
+      console.log('Error in deleting file', err);
+   }
+
+};

@@ -61,7 +61,16 @@
       <!-- List of all saved csv files -->
       <ul>
          <% for (let fileName of files){ %>
-            <li><a href="/data/<%= fileName %>"><%= fileName %></a></li>
+            <li>
+               <a href="/data/<%= fileName %>">
+                  <%= fileName %>
+               </a>
+               <img src="https://cdn-icons-png.flaticon.com/512/1632/1632708.png" class="crossImg">
+               <div class="deleteSelect hidden">
+                  <div class="deleteOption" id="<%= fileName %>">Delete</div>
+                  <div class="deleteOption">Cancel</div>
+               </div>
+            </li>
          <% } %>
       </ul>
    </span>
