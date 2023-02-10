@@ -18,14 +18,21 @@ const inputCol = document.querySelector(".searchBar input");
 // Function for showing search results in DOM
 
 function searchResult(){
+   
+   let input = inputCol.value; // value given in input for search
+
 
    // if no value is given in input
    if (inputCol.value == "") {
+      let prevSearch = document.getElementById("searchResult");
+      if (prevSearch != null) {
+         prevSearch.remove();
+      }
+      thead.classList.remove("hidden");
+      tbody.classList.remove("hidden");
       return;
    }
 
-
-   let input = inputCol.value;
    let index; // variable holding the index of searched column
 
 
@@ -54,7 +61,7 @@ function searchResult(){
    }
 
 
-   // Creating new table-row
+   // Creating new table-row for showing results
    let tr = document.createElement("tr");
    tr.id = "searchResult";
 
@@ -75,8 +82,10 @@ function searchResult(){
    
 
    // Hiding all table elements and showing the created row
-   thead.style.display = "none";
-   tbody.style.display = "none";
+   // thead.style.display = "none";
+   // tbody.style.display = "none";
+   thead.classList.add('hidden');
+   tbody.classList.add("hidden");
    table.appendChild(tr);
 }
 
