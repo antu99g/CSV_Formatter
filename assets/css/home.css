@@ -163,6 +163,9 @@ th{
    border-bottom: 1px solid grey;
    color: rgb(236, 29, 29);
 }
+.deleteOption:hover{
+   cursor: pointer;
+}
    
 
 .hidden{
