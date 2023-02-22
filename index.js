@@ -2,11 +2,9 @@ const express = require('express');
 const port = 8000;
 const app = express();
 
-// Configuring environment variables
-require("dotenv").config();
 
+// Configuring file upload
 const upload = require('express-fileupload');
-
 
 // Rendering static files
 app.use(express.static("./assets"));
