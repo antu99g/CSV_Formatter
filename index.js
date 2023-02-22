@@ -24,7 +24,7 @@ app.set('views', './views');
 app.use('/', require('./routes/index'));
 
 
-app.listen(process.env.PORT || port, (err) => {
+app.listen(port, (err) => {
    if (err) {
       console.log(`Error in running the server: ${err}`);
    }
